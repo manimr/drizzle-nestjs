@@ -3,6 +3,7 @@ import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { PG_CONNECTION } from 'src/utils/constants';
 import * as schema from '../drizzle/schema';
 import { eq } from 'drizzle-orm';
+import { query } from 'express';
 
 @Injectable()
 export class UsersService {
@@ -14,10 +15,9 @@ export class UsersService {
   }
 
   async findOne(id: number) {
-    return await this.connection
-      .select()
-      .from(schema.users)
-      .where(eq(schema.users.id, id));
+    return await this.connection.query.users.findFirst({
+      where: eq(schema.users.id, id),
+    });
   }
 
   remove(id: number) {
