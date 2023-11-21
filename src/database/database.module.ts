@@ -25,4 +25,4 @@ import * as schema from './schema';
   ],
   exports: [PG_CONNECTION],
 })
-export class DrizzleModule {}
+export class DatabaseModule {}
